@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+		<groupId>p.minn</groupId>
+		<artifactId>minn-parent</artifactId>
+		<version>0.0.1</version>
+		<relativePath />
+	</parent>
+  <groupId>p.minn</groupId>
+  <artifactId>minn-base</artifactId>
+  <version>0.0.1</version>
+  <name>privilege</name>
+  
+  <dependencies>
+		<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-pojo</artifactId>
+			<version>0.0.1</version>
+		</dependency>   
+		<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-cas-client</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
+		</dependency>
+		
+  <dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+  </dependencies>
+  
+</project>
