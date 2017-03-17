@@ -70,24 +70,11 @@ public class Utils extends UtilCommon{
 		return rows;
 	}
 	
-	public static List<Map<String,Object>> createTreeMenu(List<Map<String,Object>> source,String parent){
-		List<Map<String,Object>> children=new ArrayList<Map<String,Object>>();
-		for(Map<String,Object> map:source){
-			if(map.get("pid").toString().equals(parent)){
-				if(map.get("selected").toString().equals("1")){
-					map.put("selected", true);
-				}else{
-					map.put("selected", false);
-				}
-				map.put("children", createTreeMenu(source,map.get("id").toString()));
-				children.add(map);
-			}
-		}
-		return children;
-	}
-	
 	public static String getReadUploadPath(HttpServletRequest req){
-		return req.getSession().getServletContext().getRealPath("/fronimg/")+"/";
+		return req.getSession().getServletContext().getRealPath("/frontimg/")+"/";
+	}
+	public static String getReadUploadHDFSPath(HttpServletRequest req){
+		return req.getSession().getServletContext().getRealPath("/hdfstmp/")+"/";
 	}
 	public static String getReadDataPath(HttpServletRequest req){
 		return req.getSession().getServletContext().getRealPath("/data/")+"/";

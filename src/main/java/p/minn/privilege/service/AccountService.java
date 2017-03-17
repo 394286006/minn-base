@@ -8,6 +8,13 @@ import java.util.Map;
 
 
 
+
+
+
+
+
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +23,12 @@ import org.springframework.stereotype.Service;
 import p.minn.common.utils.LogArrayList;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
+import p.minn.privilege.entity.Department;
 import p.minn.privilege.entity.IdEntity;
 import p.minn.privilege.entity.Account;
 import p.minn.privilege.entity.AccountRole;
 import p.minn.privilege.repository.AccountDao;
+import p.minn.privilege.repository.DepartmentDao;
 import p.minn.privilege.repository.RoleDao;
 import p.minn.privilege.utils.Utils;
 import p.minn.security.cas.springsecurity.auth.MyPasswordEncoder;
@@ -39,18 +48,20 @@ public class AccountService implements IAccountService{
 	private AccountDao accountDao;
 	
 	@Autowired
+    private DepartmentDao departmentDao;
+	
+	@Autowired
 	private RoleDao roleDao;
 	
 	//@Autowired
 	 private MyPasswordEncoder passwordEncoder;
-	
+	 
 	/**
 	 * 查找角色资源
 	 * @param m
 	 * @return
 	 */
-	public List<Map<String,Object>> getAccountRole(String lang,String messageBody) throws Exception{
-		
+	public List<Map<String,Object>> getAccountRole( String lang, String messageBody) throws Exception{
 		List<Map<String,Object>> list=null;
 		Page page=(Page) Utils.gson2T(messageBody, Page.class);
 		Map<String,String> condition=Utils.getCondition(page);
@@ -163,4 +174,28 @@ public class AccountService implements IAccountService{
 			 accountDao.saveAccountRole(uss);
 	    }
 	}
+
+  public List<Department> getDepartmentByAcountId(Integer accountid) {
+    // TODO Auto-generated method stub
+    return departmentDao.getDepartmentByAcountId(accountid);
+  }
+
+  @Override
+  public Account findAccountByRandomKey(String randomKey) {
+    // TODO Auto-generated method stub
+    return accountDao.findByRandomKey(randomKey);
+  }
+
+  @Override
+  public void updateKey(String name, String randomKey) {
+    // TODO Auto-generated method stub
+    accountDao.updateKey(name, randomKey);
+    
+  }
+
+  @Override
+  public boolean checkQrCodeByRandomKey(String randomKey) {
+    // TODO Auto-generated method stub
+    return accountDao.checkQrCodeByRandomKey(randomKey)==1;
+  }
 }

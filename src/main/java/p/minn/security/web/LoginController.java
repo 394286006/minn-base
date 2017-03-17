@@ -1,6 +1,7 @@
 package p.minn.security.web;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
 import p.minn.common.exception.WebPrivilegeException;
 import p.minn.privilege.utils.Constant;
@@ -31,10 +34,11 @@ public class LoginController {
 	
 	@Autowired
 	private IAccountService accountService;
-
+    @Autowired
+    private LocaleResolver localeResolver;
 
 	@RequestMapping(value="login")
-	public Object Login(HttpServletRequest req){
+	public Object Login(HttpServletRequest req,HttpServletResponse rep,@RequestParam(required=false, defaultValue="zh") String lang){
 		Object entity = null;
 		try {
 			String userName = null;
@@ -43,6 +47,10 @@ public class LoginController {
 			if (principal instanceof User) {
 				user=(User)principal;
 				userName = user.getUsername();
+				if(user.getLanguage()!=null&&!user.getLanguage().equals(""))
+				  lang=user.getLanguage().split("_")[0];
+				 Locale local=new Locale(lang);
+		         localeResolver.setLocale(req, rep, local);
 			} else {
 				userName = principal.toString();
 			}
@@ -90,5 +98,21 @@ public class LoginController {
 		
 		return entity ;
 	}
+	
+	@RequestMapping(value="/qrcodeLogin", method = RequestMethod.POST)
+    public Object qrcodeLogin (@RequestParam String key,HttpServletRequest request, HttpServletResponse response) {
+        Object entity = null;
+        try{
+            Object user= request.getSession().getAttribute(Constant.LOGINUSER);
+            accountService.updateKey(((User)user).getUsername(),key);
+            Map<String,String> rs=new HashMap<String,String>();
+            rs.put("info", "qrcode set success");
+            entity=rs;
+        }catch(Exception e){
+            entity = new WebPrivilegeException(e.getMessage());
+        }
+        
+        return entity ;
+    }
 
 }

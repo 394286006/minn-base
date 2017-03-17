@@ -2,9 +2,6 @@ package p.minn.privilege.web;
 
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +13,7 @@ import org.springframework.web.servlet.LocaleResolver;
 
 import p.minn.common.annotation.MyParam;
 import p.minn.common.exception.WebPrivilegeException;
-import p.minn.privilege.service.MenuService;
+import p.minn.privilege.service.DepartmentService;
 import p.minn.privilege.utils.Constant;
 import p.minn.security.cas.springsecurity.auth.User;
 
@@ -24,43 +21,27 @@ import p.minn.security.cas.springsecurity.auth.User;
  * 
  * @author minn 
  * @QQ:3942986006
- * @comment 菜单管理
+ * @comment 
  * 
  */
 @Controller
-@RequestMapping("/menu")
+@RequestMapping("/department")
 @SessionAttributes(Constant.LOGINUSER)
-public class MenuController {
+public class DepartmentController {
 
 	@Autowired
-	private MenuService menuService;
+	private DepartmentService departmentService;
 	
 	@Autowired
     private LocaleResolver localeResolver;
 
-	@RequestMapping(params = "method=getPrivateMenu")
-	@ResponseBody
-	public Object getPrivateMenu(HttpServletRequest req,HttpServletResponse rep,@ModelAttribute(Constant.LOGINUSER) User user,@RequestParam(required=false, defaultValue="zh") String lang){
-		Object entity = null;
-		try {
-		//	Locale local=new Locale(lang);
-			//localeResolver.setLocale(req, rep, local);
-			//user.setLanguage(lang);
-			entity = menuService.getPrivateMenu(user, lang);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new WebPrivilegeException(e.getMessage());
-		}
-
-		return entity;
-	}
 
 	@RequestMapping(params = "method=getResource")
 	@ResponseBody
 	public Object getResource(@ModelAttribute(Constant.LOGINUSER) User user,@MyParam("language") String lang,@RequestParam(required=false, defaultValue="web") String atype) {
 		Object entity = null;
 		try {
-			entity = menuService.getResource(user, lang);
+			entity = departmentService.getResource(user, lang);
 		} catch (Exception e) {
 			entity = new WebPrivilegeException(e.getMessage());
 		}
@@ -74,7 +55,7 @@ public class MenuController {
 	public Object save(@ModelAttribute(Constant.LOGINUSER) User user,@RequestParam("messageBody") String messageBody,@MyParam("language") String lang) {
 		Object entity = null;
 		try {
-			menuService.save(user,messageBody,lang);
+			departmentService.save(user,messageBody,lang);
 		} catch (Exception e) {
 			entity = new WebPrivilegeException(e.getMessage());
 		}
@@ -86,7 +67,7 @@ public class MenuController {
 	public Object delete(@RequestParam("messageBody") String messageBody) {
 		Object entity = null;
 		try {
-			menuService.delete(messageBody);
+			departmentService.delete(messageBody);
 		} catch (Exception e) {
 			entity = new WebPrivilegeException(e.getMessage());
 		}
@@ -98,7 +79,7 @@ public class MenuController {
 	public Object update(@ModelAttribute(Constant.LOGINUSER) User user,@RequestParam("messageBody") String messageBody,@MyParam("language") String lang) {
 		Object entity = null;
 		try {
-			menuService.update(user,messageBody,lang);
+			departmentService.update(user,messageBody,lang);
 		} catch (Exception e) {
 			entity = new WebPrivilegeException(e.getMessage());
 		}
@@ -110,7 +91,7 @@ public class MenuController {
 	public Object query(@RequestParam("messageBody") String messageBody,@MyParam("language") String lang){
 		Object entity = null;
 		try {
-			entity=menuService.query(messageBody,lang);
+			entity=departmentService.query(messageBody,lang);
 		 } catch (Exception e) {
 				entity = new WebPrivilegeException(e.getMessage());
 		 }
@@ -122,7 +103,7 @@ public class MenuController {
 	public Object checkCode(@RequestParam String code,@RequestParam String type) {
 		Object entity = null;
 		try {
-			entity = menuService.checkCode(code,type);
+			entity = departmentService.checkCode(code,type);
 		} catch (Exception e) {
 			entity = new WebPrivilegeException(e.getMessage());
 		}
