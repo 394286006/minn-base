@@ -15,6 +15,9 @@ import java.util.Map;
 
 
 
+
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +26,13 @@ import org.springframework.stereotype.Service;
 import p.minn.common.utils.LogArrayList;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
+import p.minn.privilege.entity.AccountThirdPart;
 import p.minn.privilege.entity.Department;
 import p.minn.privilege.entity.IdEntity;
 import p.minn.privilege.entity.Account;
 import p.minn.privilege.entity.AccountRole;
 import p.minn.privilege.repository.AccountDao;
+import p.minn.privilege.repository.AccountThirdPartDao;
 import p.minn.privilege.repository.DepartmentDao;
 import p.minn.privilege.repository.RoleDao;
 import p.minn.privilege.utils.Utils;
@@ -52,6 +57,9 @@ public class AccountService implements IAccountService{
 	
 	@Autowired
 	private RoleDao roleDao;
+	
+	@Autowired
+    private AccountThirdPartDao accountThirdPartDao;
 	
 	//@Autowired
 	 private MyPasswordEncoder passwordEncoder;
@@ -198,4 +206,19 @@ public class AccountService implements IAccountService{
     // TODO Auto-generated method stub
     return accountDao.checkQrCodeByRandomKey(randomKey)==1;
   }
+
+  @Override
+  public Account findAccountByThirdPart(String name,String secretkey) {
+    // TODO Auto-generated method stub
+    AccountThirdPart atp=accountThirdPartDao.findByName(name);
+    if(atp==null){
+      return null;
+    }else if(atp.getSecretkey().equals(secretkey)){
+      return accountDao.findAccountById(atp.getAccountId());
+    }else{
+      return null;
+    }
+   
+  }
+
 }
