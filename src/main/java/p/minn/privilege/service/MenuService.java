@@ -22,10 +22,15 @@ import java.util.Map;
 
 
 
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import p.minn.common.utils.ConstantCommon;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
 import p.minn.privilege.entity.Dictionary;
@@ -83,6 +88,9 @@ public class MenuService {
 	private List<Map<String,Object>> createTreeMenu(List<Map<String,Object>> source,String parent){
 		List<Map<String,Object>> children=new ArrayList<Map<String,Object>>();
 		for(Map<String,Object> map:source){
+			if(!map.containsKey("icon")) {
+				map.put("icon", ConstantCommon.DEFAULT_ICON);
+			}
 			if(map.get("pid").toString().equals(parent)){
 				if(map.get("type_v")!=null&&map.get("type_v").toString().equals("-1"))
 				map.put("children", createTreeMenu(source,map.get("id").toString()));
@@ -102,6 +110,7 @@ public class MenuService {
 	}
 
 
+	@Cacheable("menuResult")
 	public Object query(String messageBody, String lang) {
 		// TODO Auto-generated method stub
 		Page page=(Page) Utils.gson2T(messageBody, Page.class);
@@ -117,6 +126,7 @@ public class MenuService {
 	}
 
 
+	@CacheEvict(value="menuResult",allEntries=true)
 	public void update(User user,String messageBody, String lang) {
 		// TODO Auto-generated method stub
 		MyGsonMap<Map,Menu> msm=MyGsonMap.getInstance(messageBody,Map.class, Menu.class); 
@@ -132,7 +142,7 @@ public class MenuService {
 		globalizationDao.update(glz);
 	}
 
-
+	@CacheEvict(value="menuResult",allEntries=true)
 	public void save(User user,String messageBody, String lang) {
 		// TODO Auto-generated method stub
 		MyGsonMap<Map,Menu> msm=MyGsonMap.getInstance(messageBody,Map.class, Menu.class); 
@@ -153,6 +163,7 @@ public class MenuService {
 	}
 
 
+	@CacheEvict(value="menuResult",allEntries=true)
 	public void delete(String messageBody) {
 		// TODO Auto-generated method stub
 		IdEntity idEntity=(IdEntity) Utils.gson2T(messageBody,IdEntity.class);

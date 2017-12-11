@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.LocaleResolver;
 
 import p.minn.common.annotation.MyParam;
 import p.minn.common.exception.WebPrivilegeException;
@@ -34,18 +33,12 @@ public class MenuController {
 
 	@Autowired
 	private MenuService menuService;
-	
-	@Autowired
-    private LocaleResolver localeResolver;
 
 	@RequestMapping(params = "method=getPrivateMenu")
 	@ResponseBody
 	public Object getPrivateMenu(HttpServletRequest req,HttpServletResponse rep,@ModelAttribute(Constant.LOGINUSER) User user,@RequestParam(required=false, defaultValue="zh") String lang){
 		Object entity = null;
 		try {
-		//	Locale local=new Locale(lang);
-			//localeResolver.setLocale(req, rep, local);
-			//user.setLanguage(lang);
 			entity = menuService.getPrivateMenu(user, lang);
 		} catch (Exception e) {
 			e.printStackTrace();
