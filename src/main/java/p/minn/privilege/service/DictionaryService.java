@@ -130,7 +130,7 @@ public class DictionaryService {
 	@Transactional
 	public void delete(String messageBody){
 		IdEntity idEntity=(IdEntity) Utils.gson2T(messageBody,IdEntity.class);
-		globalizationDao.deleteByTableId(idEntity.getId(),"dictionary");
+		globalizationDao.deleteByTableId(idEntity.getId().toString(),"dictionary");
 		dictionaryDao.delete(idEntity);
 		
 	}

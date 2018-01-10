@@ -142,7 +142,7 @@ public class CategoryService {
 	public void delete(String messageBody) {
 		// TODO Auto-generated method stub
 		IdEntity idEntity=(IdEntity) Utils.gson2T(messageBody,IdEntity.class);
-		globalizationDao.deleteByTableId(idEntity.getId(),"category");
+		globalizationDao.deleteByTableId(idEntity.getId().toString(),"category");
 		categoryDao.delete(idEntity);
 	}
 }

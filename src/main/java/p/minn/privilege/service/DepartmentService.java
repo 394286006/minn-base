@@ -138,7 +138,7 @@ public class DepartmentService {
 	public void delete(String messageBody) {
 		// TODO Auto-generated method stub
 		IdEntity idEntity=(IdEntity) Utils.gson2T(messageBody,IdEntity.class);
-		globalizationDao.deleteByTableId(idEntity.getId(),"resource");
+		globalizationDao.deleteByTableId(idEntity.getId().toString(),"resource");
 		departmentDao.delete(idEntity);
 	}
 }

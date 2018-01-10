@@ -122,7 +122,7 @@ public class RoleService {
 	public void delete(String messageBody) {
 		// TODO Auto-generated method stub
 		IdEntity idEntity=(IdEntity) Utils.gson2T(messageBody,IdEntity.class);
-		globalizationDao.deleteByTableId(idEntity.getId(),"role");
+		globalizationDao.deleteByTableId(idEntity.getId().toString(),"role");
 		roleDao.delete(idEntity);
 	}
 
