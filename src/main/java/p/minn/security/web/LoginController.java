@@ -15,11 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.LocaleResolver;
 
 import p.minn.common.exception.WebPrivilegeException;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.utils.Constant;
-import p.minn.security.cas.springsecurity.auth.User;
 import p.minn.security.service.IAccountService;
 
 
@@ -29,14 +30,18 @@ import p.minn.security.service.IAccountService;
  * @QQ:3942986006
  *
  */
-@Controller
+//@Controller
+@RestController
 public class LoginController {
 	
 	@Autowired
 	private IAccountService accountService;
     @Autowired
     private LocaleResolver localeResolver;
-
+    @RequestMapping(value = "/hi")
+    public String hi(@RequestParam String name){
+        return name;
+    }
 	@RequestMapping(value="login")
 	public Object Login(HttpServletRequest req,HttpServletResponse rep,@RequestParam(required=false, defaultValue="zh") String lang){
 		Object entity = null;

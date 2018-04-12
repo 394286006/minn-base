@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import p.minn.common.utils.ConstantCommon;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.entity.Dictionary;
 import p.minn.privilege.entity.Globalization;
 import p.minn.privilege.entity.IdEntity;
@@ -42,7 +43,6 @@ import p.minn.privilege.repository.GlobalizationDao;
 import p.minn.privilege.repository.MenuDao;
 import p.minn.privilege.utils.Constant;
 import p.minn.privilege.utils.Utils;
-import p.minn.security.cas.springsecurity.auth.User;
 import p.minn.vo.MyUserDetails;
 
 /**

@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import p.minn.common.annotation.MyParam;
 import p.minn.common.exception.WebPrivilegeException;
+import p.minn.oauth.service.MyAuthService;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.service.MenuService;
 import p.minn.privilege.utils.Constant;
-import p.minn.security.cas.springsecurity.auth.User;
 
 /**
  * 
@@ -33,7 +34,9 @@ public class MenuController {
 
 	@Autowired
 	private MenuService menuService;
-
+	 @Autowired
+	    private MyAuthService myAuthService;
+	 
 	@RequestMapping(params = "method=getPrivateMenu")
 	@ResponseBody
 	public Object getPrivateMenu(HttpServletRequest req,HttpServletResponse rep,@ModelAttribute(Constant.LOGINUSER) User user,@RequestParam(required=false, defaultValue="zh") String lang){

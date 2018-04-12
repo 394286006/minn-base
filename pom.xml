@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>p.minn</groupId>
 		<artifactId>minn-parent</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 		<relativePath>../minn-parent</relativePath>
 	</parent>
 	<groupId>p.minn</groupId>
 	<artifactId>minn-base</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<name>privilege</name>
 
 	<dependencies>
@@ -26,7 +26,12 @@
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-cas-client</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-oauth</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

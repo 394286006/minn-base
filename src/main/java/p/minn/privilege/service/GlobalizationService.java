@@ -18,11 +18,11 @@ import org.springframework.stereotype.Service;
 
 
 import p.minn.common.utils.Page;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.entity.Globalization;
 import p.minn.privilege.entity.IdEntity;
 import p.minn.privilege.repository.GlobalizationDao;
 import p.minn.privilege.utils.Utils;
-import p.minn.security.cas.springsecurity.auth.User;
 
 /**
  * @author minn

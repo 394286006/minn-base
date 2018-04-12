@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import p.minn.common.utils.LogArrayList;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.entity.AccountThirdPart;
 import p.minn.privilege.entity.Department;
 import p.minn.privilege.entity.IdEntity;
@@ -37,7 +38,6 @@ import p.minn.privilege.repository.DepartmentDao;
 import p.minn.privilege.repository.RoleDao;
 import p.minn.privilege.utils.Utils;
 import p.minn.security.cas.springsecurity.auth.MyPasswordEncoder;
-import p.minn.security.cas.springsecurity.auth.User;
 import p.minn.security.service.IAccountService;
 
 /**

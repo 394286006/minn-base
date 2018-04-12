@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.LocaleResolver;
 
 import p.minn.common.exception.WebPrivilegeException;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.utils.Constant;
 import p.minn.privilege.utils.Utils;
-import p.minn.security.cas.springsecurity.auth.User;
 import p.minn.security.service.IAccountService;
 import p.minn.security.service.SecurityService;
 
