@@ -30,7 +30,6 @@ import p.minn.security.service.IAccountService;
  * @QQ:3942986006
  *
  */
-//@Controller
 @RestController
 public class LoginController {
 	
@@ -38,10 +37,6 @@ public class LoginController {
 	private IAccountService accountService;
     @Autowired
     private LocaleResolver localeResolver;
-    @RequestMapping(value = "/hi")
-    public String hi(@RequestParam String name){
-        return name;
-    }
 	@RequestMapping(value="login")
 	public Object Login(HttpServletRequest req,HttpServletResponse rep,@RequestParam(required=false, defaultValue="zh") String lang){
 		Object entity = null;
@@ -94,6 +89,7 @@ public class LoginController {
 	public Object logoutHandler (HttpServletRequest request, HttpServletResponse response) {
 		Object entity = null;
 		try{
+			request.getSession().invalidate();
 			Map<String,String> rs=new HashMap<String,String>();
 			rs.put("info", "logout success");
 			entity=rs;
