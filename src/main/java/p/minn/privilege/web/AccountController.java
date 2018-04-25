@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import p.minn.common.annotation.MyParam;
 import p.minn.common.exception.WebPrivilegeException;
-import p.minn.oauth.vo.User;
 import p.minn.privilege.utils.Constant;
-import p.minn.security.service.IAccountService;
+import p.minn.security.service.AccountService;
+import p.minn.vo.User;
 
 /**
  * 
@@ -27,7 +27,7 @@ import p.minn.security.service.IAccountService;
 public class AccountController {
 
 	@Autowired
-	private IAccountService accountService;
+	private AccountService accountService;
 
 	@RequestMapping(params = "method=save")
 	@ResponseBody

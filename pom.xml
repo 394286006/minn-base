@@ -29,11 +29,6 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
-			<groupId>p.minn</groupId>
-			<artifactId>minn-oauth</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>

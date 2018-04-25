@@ -12,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import p.minn.auth.entity.Account;
 import p.minn.common.aop.log.LogAop;
 import p.minn.common.utils.LogUtil;
 import p.minn.privilege.entity.OperatorLog;
-import p.minn.privilege.entity.Account;
 import p.minn.privilege.repository.LogDao;
 import p.minn.privilege.utils.Constant;
 import p.minn.privilege.utils.Utils;

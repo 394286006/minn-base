@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import p.minn.common.annotation.MyParam;
 import p.minn.common.exception.WebPrivilegeException;
-import p.minn.oauth.vo.User;
 import p.minn.privilege.service.CategoryService;
 import p.minn.privilege.utils.Constant;
+import p.minn.vo.User;
 
 /**
  * 

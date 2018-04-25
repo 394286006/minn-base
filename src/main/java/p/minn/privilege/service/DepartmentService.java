@@ -29,20 +29,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import p.minn.auth.entity.Department;
+import p.minn.auth.repository.DepartmentDao;
+import p.minn.common.entity.Globalization;
+import p.minn.common.entity.IdEntity;
+import p.minn.common.repository.GlobalizationDao;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
 import p.minn.common.utils.UtilCommon;
-import p.minn.oauth.vo.User;
-import p.minn.privilege.entity.Department;
 import p.minn.privilege.entity.Dictionary;
-import p.minn.privilege.entity.Globalization;
-import p.minn.privilege.entity.IdEntity;
 import p.minn.privilege.entity.Menu;
-import p.minn.privilege.entity.Account;
-import p.minn.privilege.repository.DepartmentDao;
-import p.minn.privilege.repository.GlobalizationDao;
 import p.minn.privilege.utils.Constant;
 import p.minn.privilege.utils.Utils;
+import p.minn.vo.User;
 import p.minn.vo.MyUserDetails;
 
 /**

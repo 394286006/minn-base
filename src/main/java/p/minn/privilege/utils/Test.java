@@ -6,7 +6,9 @@ import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import p.minn.privilege.entity.Account;
+import p.minn.auth.entity.Account;
+
+
 
 public class Test {
 

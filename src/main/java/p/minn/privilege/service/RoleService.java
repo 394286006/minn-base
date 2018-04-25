@@ -10,19 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import p.minn.auth.entity.Role;
+import p.minn.auth.entity.RoleMenu;
+import p.minn.auth.repository.RoleDao;
+import p.minn.common.entity.Globalization;
+import p.minn.common.entity.IdEntity;
+import p.minn.common.repository.GlobalizationDao;
 import p.minn.common.utils.LogArrayList;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
-import p.minn.oauth.vo.User;
-import p.minn.privilege.entity.Globalization;
-import p.minn.privilege.entity.IdEntity;
 import p.minn.privilege.entity.Menu;
-import p.minn.privilege.entity.Role;
-import p.minn.privilege.entity.RoleMenu;
-import p.minn.privilege.repository.GlobalizationDao;
-import p.minn.privilege.repository.RoleDao;
 import p.minn.privilege.utils.Constant;
 import p.minn.privilege.utils.Utils;
+import p.minn.vo.User;
 
 /**
  * 
